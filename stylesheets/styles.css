@@ -1,11 +1,10 @@
-@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,400,700);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,600);
 
 body {
   padding:50px;
-  font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font:14px/1.5 "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#202020;
-  font-weight:400;
+  font-weight:300;
   background: url(https://s3.amazonaws.com/financejs/crossword.png);
   background-repeat: repeat;
 
@@ -27,9 +26,8 @@ h1, h2, h3 {
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 55px;
-  font-weight: 300;
+  font-weight: 700;
   margin-top: -10px;
-  text-transform: uppercase;
 }
 
 h2 {
@@ -41,7 +39,7 @@ h3, h4, h5, h6 {
 }
 
 a {
-  color:#39c;
+  color: rgba(39, 174, 96,1.0);
   font-weight:400;
   text-decoration:none;
 }
@@ -195,8 +193,8 @@ header li {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  background-color: rgba(52, 152, 219,1.0);
-  box-shadow: 0px 3px 0px 0px rgba(41, 128, 185,1.0);
+  background-color: rgba(46, 204, 113,1.0);
+  box-shadow: 0px 3px 0px 0px rgba(39, 174, 96,1.0);
   outline: 0 none;
   text-decoration: none;
 }
