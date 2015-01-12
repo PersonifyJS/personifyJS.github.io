@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Finance.js&mdash;JavaScript library for financial calculations</title>
+    <title>Personify.js&mdash;JavaScript library that integrates IBM Watson and the Twitter API</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -16,21 +16,21 @@
     <div class="wrappper">
     <div class="sidebar">
       <header>
-        <h3>Finance.js (2.0.1)</h3>
-        <p>A JavaScript library for financial calculations.</p>
+        <h3>Personify.js (0.1.0)</h3>
+        <p>A JavaScript library that integrates IBM Watson and the Twitter API.</p>
 
-        <p class="view"><a href="https://github.com/essamjoubori/finance.js">View Source Code <small>essamjoubori/financejs</small></a></p>
+        <p class="view"><a href="https://github.com/PersonifyJS/personify.js">View Source Code <small>PersonifyJS/personify.js</small></a></p>
 
         <ul>
-          <li><a href="https://github.com/essamjoubori/finance.js/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://www.npmjs.com/package/financejs">Install <strong>npm</strong></a></li>
-          <li><a href="https://github.com/essamjoubori/finance.js">Fork On <strong>GitHub</strong></a></li>
+          <li><a href="https://github.com/PersonifyJS/personify.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://www.npmjs.com/package/personify">Install <strong>npm</strong></a></li>
+          <li><a href="https://github.com/PersonifyJS/personify.js">Fork On <strong>GitHub</strong></a></li>
         </ul>
         
         
         <a class="link-header" href="#intro">Introduction</a><br>
-        <a class="link-header" href="#start">Getting Started</a><br>
-        <a class="link-header" href="#example-usage">Example Usage</a><br>
+        <a class="link-header" href="#start">Installing</a><br>
+        <a class="link-header" href="#usage">Usage</a><br>
         <a class="link-header" href="#tests">Tests</a><br>
         <strong><a class="link-child" href="#Amortization">Amortization (AM)</a></strong><br>
         <strong><a class="link-child" href="#CAGR">Compound Annual Growth Rate (CAGR)</a></strong><br>
@@ -48,7 +48,6 @@
         <strong><a class="link-child" href="#WACC">Weighted Average Cost of Capital (WACC)</a></strong><br>
         <a class="link-header" href="#examples">Example Applications</a>
         <br><br>
-        <p><small>Finance.js was created by <a href="http://essam.io">Essam Al Joubori</a>.</small></p>
       </header>
      </div>
   <div class="main-content">
@@ -59,233 +58,313 @@
 
   <h2 id="intro">Introduction</h2>
 
-  <p>Finance.js makes it easy to incorporate common financial calculations into your application. The library is built on pure JavaScript without any dependencies.</p>
+  <p>A JavaScript based library that allows easy access to IBM Watson features utilizing Twitter data. IBM Watson has some of the most advanced linguistic analytics tools available today. Twitter is one of the world's most popular text-based communication platforms. Leverage the power of both with minimal effort through personify.js.</p>
 
-  <p>This project is <a href="https://github.com/essamjoubori/finance.js">hosted on GitHub</a>. You can report bugs and discuss features on the <a href="https://github.com/essamjoubori/finance.js/issues">GitHub issues page</a>. Finance.js is available for use under the <a href="https://github.com/essamjoubori/finance.js/blob/master/LICENSE.md">MIT software license</a>.
+  <p>Our current version implements:
 
-  <h2 id="start">Getting Started</h2>
+    <ul><li>Watson User Modeling service, which extracts cognitive and social characteristics, including Big Five, Values, and Needs, from communications data provided.</li>
+        <li>Watson Machine Translation service, which converts text input in one language into a desired language for the end user. Translation is available for English, Brazilian Portuguese, Spanish, French and Arabic.</li>
+        <li>Twitter REST API.</li>
+        <li>Twitter Streaming API.</li>
+    </ul>
+  </p>
 
-  <pre><code>npm install financejs --save</code></pre>
+  <p>This project is <a href="https://github.com/PersonifyJS/personify.js">hosted on GitHub</a>. You can report bugs and discuss features on the <a href="https://github.com/PersonifyJS/personify.js/issues">GitHub issues page</a>. Personify.js is available for use under the <a href="https://github.com/PersonifyJS/personify.js/blob/master/LICENSE.md">MIT software license</a>.
 
-  <p><strong>or</strong></p>
+  <h2 id="Installing">Installing</h2>
 
+  <pre><code>npm install personify --save</code></pre>
+
+  <h2 id="Usage">Usage</h2>
+
+<!-- Requiring -->
+
+  <h3 id="Requiring">Requiring Personify.js</h3>
+
+  <pre><code>var Personify = require('personify');</code></pre>
+
+  <!-- Configuration -->
+
+  <h3 id="Configuration">Configuration</h3>
+
+  <p>For every service you use through Watson, IBM will provide you with a separate set of OAuth credentials. See <a href="#Credentials">below</a> to find out where to get these credentials.</p>
+
+  <pre><code>var config = { <br>
+// example credentials for Watson Machine Translation service<br>
+    translateConfig : {<br>
+        service_url:          '...',<br>
+        service_username:     '...',<br>
+        service_password:     '...'<br>
+    },<br><br>
+
+// example credentials for Watson User Modeling service<br>
+    personalityConfig : {<br>
+        service_url:          '...',<br>
+        service_username:     '...',<br>
+        service_password:     '...'<br>
+    },<br><br>
+
+// example credentials for Twitter API<br>
+    twitterConfig : {<br>
+        consumer_key:         '...',<br>
+        consumer_secret:      '...',<br>
+        access_token:         '...',<br>
+        access_token_secret:  '...'<br>
+    }<br>
+};<code></pre>
+
+  <!-- Instantiation -->
+
+  <h3 id="Instantiation">Instantiation</h3>
+
+  <p>Instantiate a new Personify object and pass in OAth credentials:</p>
+
+  <pre><code>var P = new Personify(config);</code></pre>
+
+  <!-- Methods -->
+
+  <h2 id="Methods">Methods</h2>
+
+  <!-- userPersonify -->
+
+  <h3 id="userPersonify">userPersonify</h3>
+
+  <p>Use Watson to discover personality traits, values and needs for a Twitter user;'@' can be used before a username, but is not required (e.g., '@userName').</p>
+
+  <pre><code>var params1 = {<br>
+                screen_name: 'userName'<br>
+                count: 100<br>
+              };<br><br>
+
+P.userPersonify( params1 , function (data, err) {<br>
+    console.log(data, err);<br>
+});<br>
+
+</code></pre>
+
+<!-- homePersonify -->
+
+  <h3 id="homePersonify">homePersonify</h3>
+
+  <p>Watson provides a personality assessment of the combined input of tweets in a user's home timeline. Includes tweets from friends and accounts the user is following, and their retweets</p>
+
+  <pre><code>var params2 = {<br>
+                 count: 100, <br>
+                exclude_tweets: true<br>
+              };<br><br>
+
+P.homePersonify( params2, function (data, err) {<br>
+    console.log(data, err);<br>
+});<br>
+
+</code></pre>
+
+
+<!-- searchPersonify -->
+
+  <h3 id="searchPersonify">searchPersonify</h3>
+
+  <p>Search Twitter with a (required) keyword. Accepts all of Twitter's optional search parameters and a few additional ones we've created for your convenience.</p>
+
+  <pre><code>var params3 = { <br>
+                q: '#JavaScript', <br>
+                geoCode: 'San Francisco'<br>
+              };<br><br>
+
+P.searchPersonify( params3 , function (data, err) {
+  console.log(data, err);
+});<br>
+
+</code></pre>
+
+
+
+<!-- searchTranslate -->
+
+  <h3 id="searchTranslate">searchTranslate</h3>
+
+  <p>Grab a number of Tweets in a specified language and get back both the original text and its translation in another destination language. Most of the search parameters available here are the same as those in our searchTweet method.</p>
+
+  <pre><code>var params4 = { <br>
+                q: 'JavaScript', 
+                fromLanguage: 'ar', // Translate from Arabic<br>
+                toLanguage: 'en',   // to English<br>
+                outputType: 'text'  // Choose from text, json or XML<br>
+              };<br><br>
+
+P.searchTranslate( params4 , function (data, err) {<br>
+    console.log(data, err);<br>
+});<br>
+
+</code></pre>
+
+
+
+<!-- userTranslate -->
+
+  <h3 id="userTranslate">userTranslate</h3>
+
+  <p>Input a Twitter handle and get back their tweets translated</p>
+
+  <pre><code>var params5 = {<br>
+                screen_name: 'userName',<br>
+                fromLanguage: 'en',<br>
+                toLanguage: 'fr',<br>
+                outputType: 'json'<br>
+              };<br><br>
+
+P.userTranslate( params5, function(data, err){<br>
+    console.log(data, err);<br>
+});<br>
+
+</code></pre>
+
+
+
+
+<!-- homeTranslate -->
+
+  <h3 id="homeTranslate">homeTranslate</h3>
+
+  <p>Get tweets from your home timeline and have them translated into another language</p>
+
+  <pre><code>var params6 = {<br>
+                count: 150,<br>
+                fromLanguage: 'en',<br>
+                toLanguage: 'fr',<br>
+                outputType: 'json'<br>
+              };<br><br>
+
+P.homeTranslate( params6, function(data, err){<br>
+    console.log(data, err);<br>
+});<br>
+
+</code></pre>
+
+
+<!-- streamTranslate -->
+
+  <h3 id="streamTranslate">streamTranslate</h3>
+
+  <p>Find tweets talkng about the LHC using Twitter's Streaming API and translate them into another language</p>
+
+  <pre><code>var params7 = {<br>
+                track: 'Large Hadron Collider'<br>
+                fromLanguage: 'en',<br>
+                toLanguage: 'fr',<br>
+                outputType: 'text'<br>
+              };<br><br>
+
+P.streamTranslate( params7, function(data, err){<br>
+    console.log(data, err);<br>
+});<br>
+
+</code></pre>
+
+<!-- Personify API -->
+
+  <h2 id="PersonifyAPI">Personify API</h2>
+
+
+  <!-- userPersonifyAPI -->
+
+  <h3 id="userPersonifyAPI">userPersonify</h3>
+
+  <pre><code>P.userPersonify( 'input', callback )</code></pre>
+
+  <p>'input' is required. Object type is a string representing a Twitter username. Optionally you can include an '@' before the username.</p>
+
+  <br><br>
+
+  <!-- homePersonifyAPI -->
+  <h3 id="homePersonifyAPI">homePersonify</h3>
+
+  <pre><code>P.homePersonify( [params], callback )</code></pre>
+
+
+  <p>'input' is required. Object type is a string representing a Twitter username. Optionally you can include an '@' before the username.</p>
+  
+  <br><br>
+
+  <!-- homePersonifyAPI -->
+  <h3 id="homePersonifyAPI">homePersonify</h3>
+
+  <pre><code>P.homePersonify( [params], callback )</code></pre>
+
+
+  <p>params key-value pairs are optional, but at least empty object literal brackets are required.</p>
+  
+  <br><br>
+
+  <!-- searchPersonifyAPI -->
+  <h3 id="searchPersonifyAPI">searchPersonify</h3>
+
+  <pre><code>P.searchPersonify( { q: 'input', [additional params] }, callback )</code></pre>
+
+
+  <p>The 'q' key and its associated value, which is a string, are required. The string can be any word you may use to search in Twitter's search bar. Any additional key-value pairs are optional.</p>
+  
+  <br><br>
+
+  <!-- searchTranslateAPI -->
+  <h3 id="searchTranslateAPI">searchTranslate</h3>
+
+  <pre><code>P.searchTranslate( { q: 'input', fromLanguage: 'en', toLanguage: 'fr', outputType: 'json' }, callback )</code></pre>
+
+
+  <p>All key-value pairs inside of the object passed as the first argument are required.</p>
+  
+  <br><br>
+
+  <!-- callback -->
+  <h3 id="callback">callback</h3>
+
+  <pre><code>function (data, err)</code></pre>
+
+
+  <p>data is the parsed data received from IBM Watson. Callback functions are required for all methods.</p>
+  
+  <br><br>
+  
+  <!-- OAuth credentials -->
+
+  <h2 id="Credentials">OAuth Credentials</h2>
+
+  <p>Go here to create a Twitter app and get OAuth credentials (if you haven't already):</p>
+  <a href="https://dev.twitter.com/apps/new">https://dev.twitter.com/apps/new</a>
+
+  <p>In order to use IBM Watson, you need to:</p>
   <ul>
-    <li>Download or fork the repository from GitHub.</li>
-    <li>Extract the file finance.js from the project and include it in your application on the client side.</li>
+    <li>Register for an IBM Bluemix account: <a href="http://www-01.ibm.com/software/bluemix/"></a>http://www-01.ibm.com/software/bluemix/</li>
+    <li>Create an App</li>
+    <li>Add User Modeling and/ or Machine Translation service(s)</li>
+    <li>From there, IBM will provide your credentials</li>
   </ul>
 
-  <h2 id="example-usage">Example Usage</h2>
 
-  <pre><code>var Finance = require('financejs');<br>
-  var finance = new Finance();<br><br>
-  // To calculate Amortization<br>
-  finance.AM(20000, 7.5, 5, 0);<br>
-  // => 400.76</code></pre>
-
-  <h2 id="tests">Tests</h2>
-
+  <!-- tests -->
+  
+  <h2 id="Tests">Tests</h2>
+  <p>To make the tests pass you will need to fill out the file: config.js inside the tests folder.</p>
+  <p>To run the tests:</p>
   <pre><code>npm test</code></pre>
 
-<!-- Amortization -->
 
-  <h3 id="Amortization">Amortization<br>
-  <code class="highlight">finance.AM(principal, rate, total number of payments, [type]);</code></h3>
-
-  <p>Amortization is the paying off of debt with a fixed repayment schedule in regular installments over a period of time.<sup><a href="http://www.investopedia.com/terms/a/amortization.asp" target="_blank">1</a></sup></p>
-
-  <p>For total number of payments which are entered as years, <code>[type]</code> takes a <code>0</code>, whereas for months <code>[type]</code> takes a <code>1</code>.</p>
-
-  <pre><code>#Total Number of Payments Type = Years
-  // e.g., If principal is $20,000, rate is 7.5%, total number of payments is 5, and payment type is 0 (years), monthly payment is $400.76.
-
-  finance.AM(20000, 7.5, 5, 0);
-  => 400.76
-
-  #Total Number of Payments Type = Months
-  // e.g.,If principal is $20,000, rate is 7.5%, total number of payments is 60, and payment type is 1 (months), monthly payment is $400.76.
-
-  finance.AM(20000, 7.5, 60, 1);
-  => 400.76</code></pre>
-
-  <!-- Compound Annual Growth Rate (CAGR) -->
-
-  <h3 id="CAGR">Compound Annual Growth Rate (CAGR)<br>
-  <code class="highlight">finance.CAGR(beginning value, ending value, number of periods);</code></h3>
-
-  <p>Compound Annual Growth Rate (CAGR) is the year-over-year growth rate of an investment over a specified period of time.<sup><a href="http://www.investopedia.com/terms/c/cagr.asp" target="_blank">2</a></sup></p>
-
-  <pre><code>// e.g., If the beginning value is $10,000, the ending value is $19,500, and the number of periods is 3, the CAGR is 24.93%.
-
-  finance.CAGR(10000, 19500, 3);
-  => 24.93</code></pre>
-
-  <!-- Compound Interest (CI) -->
-
-  <h3 id="CI">Compound Interest (CI)<br>
-  <code class="highlight">finance.CI(rate, compoundings per period, principal, number of periods);</code></h3>
-
-  <p>Compound Interest is the interest calculated on the initial principal and also on the accumulated interest of previous periods of a deposit or loan.<sup><a href="http://www.investopedia.com/terms/c/compoundinterest.asp" target="_blank">3</a></sup></p>
-
-  <pre><code>// e.g., If rate is 4.3%, the compoundings per period is 4, the principal is $1,500, and the number of periods is 6, the compound interest is $1,938.84.
-
-  finance.CI(4.3, 4, 1500, 6 );
-  => 1938.84</code></pre>
-
-  <!-- Discount Factor (DF) -->
-
-  <h3 id="DF">Discount Factor (DF)<br>
-  <code class="highlight">finance.DF(rate, number of periods);</code></h3>
-
-  <p>The Discount Factor (DF) is the factor by which a future cash flow must be multiplied in order to obtain the present value.<sup><a href="http://en.wikipedia.org/wiki/Discounting#Discount_factor" target="_blank">4</a></sup></p>
-
-  <pre><code>// e.g., If rate is 10% and the number of periods is 6, the result is an array of discount factors: [1, 0.91, 0.827, 0.752, 0.684].
-
-  finance.DF(10, 6);
-  => [1, 0.91, 0.827, 0.752, 0.684]</code></pre>
-
-  <!-- Future Value (FV) -->
-
-  <h3 id="FV">Future Value (FV)<br>
-  <code class="highlight">finance.FV(rate, cash flow, number of periods);</code></h3>
-
-  <p>Future Value (FV) is the value of an asset or cash at a specified date in the future that is equivalent in value to a specified sum today<sup><a href="http://www.investopedia.com/terms/f/futurevalue.asp" target="_blank">5</a></sup></p>
-
-  <pre><code>// e.g., If rate is 0.5%, cash flow is $1,000, and the number of periods is 12, the FV is $1,061.68.
-
-  finance.FV(0.5, 1000, 12);
-  => 1068.68</code></pre>
-
+  <!-- Contributing -->
   
-  <!-- Internal Rate of Return (IRR) -->
-
-  <h3 id="IRR">Internal Rate of Return (IRR)<br>
-  <code class="highlight">finance.IRR(initial investment, [cash flows]);</code></h3>
-
-  <p>Internal Rate of Return (IRR) is the discount rate often used in capital budgeting that makes the net present value of all cash flows from a particular project equal to zero.<sup><a href="http://www.investopedia.com/terms/i/irr.asp" target="_blank">6</a></sup></p>
-
-  <pre><code>// e.g., If initial investment is -$500,000 and the cash flows are $200,000, $300,000, and $200,000, IRR is 18.82%.
-
-  finance.IRR(-500000, 200000, 300000, 200000);
-  => 18.82</code></pre> 
-
-  <!-- Leverage Ratio (LR) -->
-
-  <h3 id="LR">Leverage Ratio (LR)<br>
-  <code class="highlight">finance.LR(total liabilities, total debts, total income);</code></h3>
-
-  <p>Leverage Ratio (LR) is used to calculate the financial leverage of a company or individual to get an idea of the methods of financing or to measure ability to meet financial obligations.<sup><a href="http://www.investopedia.com/terms/l/leverageratio.asp" target="_blank">7</a></sup></p>
-
-  <pre><code>// e.g., If total liabilities are $25, total debts are $10, and total income is $20, the leverage ratio is 1.75.
-
-  finance.LR(25, 10, 20);
-  => 1.75</code></pre>
-
-  <!-- Net Present Value (NPV) -->
-
-  <h3 id="NPV">Net Present Value (NPV)<br>
-  <code class="highlight">finance.NPV(rate, initial investment, [cash flows]);</code></h3>
-
-  <p>Net Present Value (NPV) compares the money received in the future to an amount of money received today, while accounting for time and interest [through the discount rate]. It's based on the principal of time value of money (TVM), which explains how time affects monetary value.<sup><a href="http://www.investopedia.com/articles/fundamental-analysis/09/net-present-value.asp" target="_blank">8</a></sup></p>
-
-  <p><code>[cash flows]</code> takes any number of projected cash flows.</p>
-
-  <pre><code>// e.g., If discount rate is 10%, initial investment is -$1,000, cash flow in year 1 is $200,000, year 2 is $300,000, and year 3 is $200,000, the NPV is $80,015.03.
-
-  finance.NPV(10, -500000, 200000, 300000, 200000);
-  => 80015.03</code></pre>
-
-  <!-- Payback Period (PP) -->
-
-  <h3 id="PP">Payback Period (PP)<br>
-  <code class="highlight">finance.PP(number of periods, [cash flows]);</code></h3>
-
-  <p>Payback Period (PP) is the length of time required to recover the cost of an investment.<sup><a href="http://www.investopedia.com/terms/p/paybackperiod.asp" target="_blank">9</a></sup></p>
-
-  <p><code>number of periods</code> takes a <code>0</code> value for even cash flows;<br>for uneven cash flows, <code>number of periods</code> takes any number of projected periods.</p>
-
-  <p><code>[cash flows]</code> takes any number of projected cash flows.</p>
-
-  <pre><code>#Even Cash Flows
-  // e.g., Because even cash flows have the same inflow during each period, we set 'number of periods' to '0.' If initial investment is -$105 and the annual cash flow is $25, the payback period is 4.2 years.
-
-  finance.PP(0, -105, 25);
-  => 4.2
-
-  #Uneven Cash Flows
-  // e.g., If number of periods is 5, initial investment is -$50, and the cash flows are $10, $13, $16, $19, and $22 for each year, the payback period is 3.42 years.
-
-  finance.PP(5, -50, 10, 13, 16, 19, 22);
-  => 3.42</code></pre>
-
-  <!-- Present Value (PV) -->
-
-  <h3 id="PV">Present Value (PV)<br>
-  <code class="highlight">finance.PV(rate, cash flow);</code></h3>
-
-  <p>Present Value (PV) is the current worth of a future sum of money or stream of cash flows given a specified rate of return.<sup><a href="http://www.investopedia.com/terms/p/presentvalue.asp" target="_blank">10</a></sup></p>
-
-  <pre><code>// e.g., If rate is 5% and cash flow is $100, the PV is $95.24.
-
-  finance.PV(5, 100);
-  => 95.24</code></pre>
-
-  <!-- Profitability Index (PI) -->
-
-  <h3 id="PI">Profitability Index (PI)<br>
-  <code class="highlight">finance.PI(rate, initial investment, [cash flows]);</code></h3>
-
-  <p>Profitability Index (PI) is an index that attempts to identify the relationship between the costs and benefits of a proposed project through the use of a ratio calculated.<sup><a href="http://www.investopedia.com/terms/p/profitability.asp" target="_blank">11</a></sup></p>
-
-  <p><code>[cash flows]</code> takes any number of projected cash flows.</p>
-
-  <pre><code>// e.g., If rate is 10%, initial investment is -$40,000, cash flows are $18,000, $12,000, $10,000, $9,000, and $6,000, PI is 1.09.
-
-  finance.PI(10, -40000, 18000, 12000, 10000, 9000, 6000);
-  => 1.09</code></pre>
-
-<!-- Return on Investment (ROI) -->
-
-  <h3 id="ROI">Return on Investment (ROI)<br>
-  <code class="highlight">finance.ROI(initial investment, earnings);</code></h3>
-
-  <p>Return on Investment (ROI) is a simple calculation that tells you the bottom line return of any investment.<sup><a href="http://www.investopedia.com/articles/basics/10/guide-to-calculating-roi.asp" target="_blank">12</a></sup></p>
-
-  <pre><code>// e.g., If initial investment is -$55,000 and the earnings are $60,000, the return on investment is 9.09%.
-
-  finance.ROI(-55000, 60000);
-  => 9.09</code></pre>
-
-  <!-- Rule of 72 (R72) -->
-
-  <h3 id="R72">Rule of 72 (R72)<br>
-  <code class="highlight">finance.R72(rate);</code></h3>
-
-  <p>Rule of 72 (R72) is a rule stating that in order to find the number of years required to double your money at a given interest rate, you divide the compound return into 72.<sup><a href="http://www.investopedia.com/terms/r/ruleof72.asp" target="_blank">13</a></sup></p>
-
-  <pre><code>// e.g., If annual rate is 10%, rule of 72 is 7.2 years.
-
-  finance.R72(10);
-  => 7.2</code></pre>
-
-  <!-- Weighted Average Cost of Capital (WACC) -->
-
-  <h3 id="WACC">Weighted Average Cost of Capital (WACC)<br>
-  <code class="highlight">finance.WACC(market value of equity, market value of debt, cost of equity, cost of debt, tax rate);</code></h3>
-
-  <p>Weighted Average Cost of Capital (WACC) is the rate that a company is expected to pay on average to all its security holders to finance its assets.<sup><a href="http://en.wikipedia.org/wiki/Weighted_average_cost_of_capital" target="_blank">14</a></sup></p>
-
-  <pre><code>// e.g., If market value of equity is $600,000, market value of debt is $400,000, cost of equity is 6%, cost of debt is 5%, and tax rate is 35%, WACC is 4.9%.
-
-  finance.WACC(600000, 400000, 6, 5, 35);
-  => 4.9</code></pre>
-
-<h2 id="examples">Example Applications</h2>
-<p><a href="http://rapidnpv.cuneiform.io/" target="_blank">RapidNPV</a></p>
-
-
-
-
+  <h2 id="Contributing">Contributing</h2>
+  <p>To contribute to this project, please take a look at the guidelines on <a href="https://github.com/PersonifyJS/personify.js/blob/master/CONTRIBUTING.md">GitHub</a></p>
   
+
+  <!-- Development Team -->
+  
+  <h2 id="DevelopmentTeam">Development Team</h2>
+    <ul>
+      <li><a href="http://essam.io">Essam Al Joubori</a></li>
+      <li><a href="https://github.com/rohanagrawal">Rohan Agrawal</a></li>
+      <li><a href="https://github.com/philelauria">Phil Elauria</a></li>
+    </ul>
+
   </section> 
   </div>
   <!--
