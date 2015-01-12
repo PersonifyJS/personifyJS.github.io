@@ -1,74 +1,408 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Personifyjs.GitHub.io : ">
+    <title>Personify.js&mdash;JavaScript library that integrates IBM Watson and the Twitter API</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Personifyjs.GitHub.io</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
+    <div class="wrappper">
+    <div class="sidebar">
+      <header>
+        <h3>Personify.js (0.1.0)</h3>
+        <p>A JavaScript library that integrates IBM Watson and the Twitter API.</p>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/PersonifyJS">View on GitHub</a>
+        <p class="view"><a href="https://github.com/PersonifyJS/personify.js">View Source Code <small>PersonifyJS/personify.js</small></a></p>
 
-          <h1 id="project_title">Personifyjs.GitHub.io</h1>
-          <h2 id="project_tagline"></h2>
+        <ul>
+          <li><a href="https://github.com/PersonifyJS/personify.js/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://www.npmjs.com/package/personify">Install <strong>npm</strong></a></li>
+          <li><a href="https://github.com/PersonifyJS/personify.js">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+        <a class="link-header" href="#intro">Introduction</a><br>
+        <a class="link-header" href="#Installing">Installing</a><br>
+        <a class="link-header" href="#Usage">Usage</a><br>
+        <strong><a class="link-child" href="#Requiring">Requiring Personify.js</strong><br>
+        <strong><a class="link-child" href="#Configuration">Configuration</strong><br>
+        <strong><a class="link-child" href="#Instantiation">Instantiation</strong><br>
+        <a class="link-header" href="#Methods">Methods</a><br>
+        <strong><a class="link-child" href="#userPersonify">userPersonify</strong><br>
+        <strong><a class="link-child" href="#homePersonify">homePersonify</strong><br>
+        <strong><a class="link-child" href="#searchPersonify">searchPersonify</strong><br>
+        <strong><a class="link-child" href="#searchTranslate">searchTranslate</strong><br>
+        <strong><a class="link-child" href="#userTranslate">userTranslate</strong><br>
+        <strong><a class="link-child" href="#homeTranslate">homeTranslate</strong><br>
+        <strong><a class="link-child" href="#streamTranslate">streamTranslate</strong><br>
+        <a class="PersonifyAPI" href="#Usage">Personify API</a><br>
+        <strong><a class="link-child" href="#userPersonifyAPI">userPersonifyAPI</strong><br>
+        <strong><a class="link-child" href="#homePersonifyAPI">homePersonifyAPI</strong><br>
+        <strong><a class="link-child" href="#searchPersonifyAPI">searchPersonifyAPI</strong><br>
+        <strong><a class="link-child" href="#searchTranslateAPI">searchTranslateAPI</strong><br>
+        <strong><a class="link-child" href="#callback">callback</strong><br>
+        <a class="link-header" href="#Credentials">OAuth Credentials</a><br>
+        <a class="link-header" href="#Tests">Tests</a><br>
+        <a class="link-header" href="#Contributing">Contributing</a><br>
+        <a class="link-header" href="#DevelopmentTeam">Development Team</a><br>
+        <a class="link-header" href="#examples">Example Applications</a>
+        <br><br>
+      </header>
+     </div>
+  <div class="main-content">
+  <section>
+  <h1>
+    <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Finance.js
+  </h1>
 
-        </header>
-    </div>
+  <h2 id="intro">Introduction</h2>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+  <p>A JavaScript based library that allows easy access to IBM Watson features utilizing Twitter data. IBM Watson has some of the most advanced linguistic analytics tools available today. Twitter is one of the world's most popular text-based communication platforms. Leverage the power of both with minimal effort through personify.js.</p>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+  <p>Our current version implements:
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+    <ul><li>Watson User Modeling service, which extracts cognitive and social characteristics, including Big Five, Values, and Needs, from communications data provided.</li>
+        <li>Watson Machine Translation service, which converts text input in one language into a desired language for the end user. Translation is available for English, Brazilian Portuguese, Spanish, French and Arabic.</li>
+        <li>Twitter REST API.</li>
+        <li>Twitter Streaming API.</li>
+    </ul>
+  </p>
+
+  <p>This project is <a href="https://github.com/PersonifyJS/personify.js">hosted on GitHub</a>. You can report bugs and discuss features on the <a href="https://github.com/PersonifyJS/personify.js/issues">GitHub issues page</a>. Personify.js is available for use under the <a href="https://github.com/PersonifyJS/personify.js/blob/master/LICENSE.md">MIT software license</a>.
+
+  <h2 id="Installing">Installing</h2>
+
+  <pre><code>npm install personify --save</code></pre>
+
+  <h2 id="Usage">Usage</h2>
+
+<!-- Requiring -->
+
+  <h3 id="Requiring">Requiring Personify.js</h3>
+
+  <pre><code>var Personify = require('personify');</code></pre>
+
+  <!-- Configuration -->
+
+  <h3 id="Configuration">Configuration</h3>
+
+  <p>For every service you use through Watson, IBM will provide you with a separate set of OAuth credentials. See <a href="#Credentials">below</a> to find out where to get these credentials.</p>
+
+  <pre><code>var config = { <br>
+// example credentials for Watson Machine Translation service<br>
+    translateConfig : {<br>
+        service_url:          '...',<br>
+        service_username:     '...',<br>
+        service_password:     '...'<br>
+    },<br><br>
+
+// example credentials for Watson User Modeling service<br>
+    personalityConfig : {<br>
+        service_url:          '...',<br>
+        service_username:     '...',<br>
+        service_password:     '...'<br>
+    },<br><br>
+
+// example credentials for Twitter API<br>
+    twitterConfig : {<br>
+        consumer_key:         '...',<br>
+        consumer_secret:      '...',<br>
+        access_token:         '...',<br>
+        access_token_secret:  '...'<br>
+    }<br>
+};<code></pre>
+
+  <!-- Instantiation -->
+
+  <h3 id="Instantiation">Instantiation</h3>
+
+  <p>Instantiate a new Personify object and pass in OAth credentials:</p>
+
+  <pre><code>var P = new Personify(config);</code></pre>
+
+  <!-- Methods -->
+
+  <h2 id="Methods">Methods</h2>
+
+  <!-- userPersonify -->
+
+  <h3 id="userPersonify">userPersonify</h3>
+
+  <p>Use Watson to discover personality traits, values and needs for a Twitter user;'@' can be used before a username, but is not required (e.g., '@userName').</p>
+
+  <pre><code>var params1 = {<br>
+                screen_name: 'userName'<br>
+                count: 100<br>
+              };<br><br>
+
+P.userPersonify( params1 , function (data, err) {<br>
+    console.log(data, err);<br>
+});<br>
+
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<!-- homePersonify -->
 
-<h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+  <h3 id="homePersonify">homePersonify</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+  <p>Watson provides a personality assessment of the combined input of tweets in a user's home timeline. Includes tweets from friends and accounts the user is following, and their retweets</p>
 
-<h3>
-<a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+  <pre><code>var params2 = {<br>
+                 count: 100, <br>
+                exclude_tweets: true<br>
+              };<br><br>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+P.homePersonify( params2, function (data, err) {<br>
+    console.log(data, err);<br>
+});<br>
 
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+</code></pre>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
 
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<!-- searchPersonify -->
 
-<p>Having trouble with Pages? Check out the documentation at <a href="https://help.github.com/pages">https://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
+  <h3 id="searchPersonify">searchPersonify</h3>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+  <p>Search Twitter with a (required) keyword. Accepts all of Twitter's optional search parameters and a few additional ones we've created for your convenience.</p>
+
+  <pre><code>var params3 = { <br>
+                q: '#JavaScript', <br>
+                geoCode: 'San Francisco'<br>
+              };<br><br>
+
+P.searchPersonify( params3 , function (data, err) {
+  console.log(data, err);
+});<br>
+
+</code></pre>
+
+
+
+<!-- searchTranslate -->
+
+  <h3 id="searchTranslate">searchTranslate</h3>
+
+  <p>Grab a number of Tweets in a specified language and get back both the original text and its translation in another destination language. Most of the search parameters available here are the same as those in our searchTweet method.</p>
+
+  <pre><code>var params4 = { <br>
+                q: 'JavaScript', 
+                fromLanguage: 'ar', // Translate from Arabic<br>
+                toLanguage: 'en',   // to English<br>
+                outputType: 'text'  // Choose from text, json or XML<br>
+              };<br><br>
+
+P.searchTranslate( params4 , function (data, err) {<br>
+    console.log(data, err);<br>
+});<br>
+
+</code></pre>
+
+
+
+<!-- userTranslate -->
+
+  <h3 id="userTranslate">userTranslate</h3>
+
+  <p>Input a Twitter handle and get back their tweets translated</p>
+
+  <pre><code>var params5 = {<br>
+                screen_name: 'userName',<br>
+                fromLanguage: 'en',<br>
+                toLanguage: 'fr',<br>
+                outputType: 'json'<br>
+              };<br><br>
+
+P.userTranslate( params5, function(data, err){<br>
+    console.log(data, err);<br>
+});<br>
+
+</code></pre>
+
+
+
+
+<!-- homeTranslate -->
+
+  <h3 id="homeTranslate">homeTranslate</h3>
+
+  <p>Get tweets from your home timeline and have them translated into another language</p>
+
+  <pre><code>var params6 = {<br>
+                count: 150,<br>
+                fromLanguage: 'en',<br>
+                toLanguage: 'fr',<br>
+                outputType: 'json'<br>
+              };<br><br>
+
+P.homeTranslate( params6, function(data, err){<br>
+    console.log(data, err);<br>
+});<br>
+
+</code></pre>
+
+
+<!-- streamTranslate -->
+
+  <h3 id="streamTranslate">streamTranslate</h3>
+
+  <p>Find tweets talkng about the LHC using Twitter's Streaming API and translate them into another language</p>
+
+  <pre><code>var params7 = {<br>
+                track: 'Large Hadron Collider'<br>
+                fromLanguage: 'en',<br>
+                toLanguage: 'fr',<br>
+                outputType: 'text'<br>
+              };<br><br>
+
+P.streamTranslate( params7, function(data, err){<br>
+    console.log(data, err);<br>
+});<br>
+
+</code></pre>
+
+<!-- Personify API -->
+
+  <h2 id="PersonifyAPI">Personify API</h2>
+
+
+  <!-- userPersonifyAPI -->
+
+  <h3 id="userPersonifyAPI">userPersonify</h3>
+
+  <pre><code>P.userPersonify( 'input', callback )</code></pre>
+
+  <p>'input' is required. Object type is a string representing a Twitter username. Optionally you can include an '@' before the username.</p>
+
+  <br><br>
+
+  <!-- homePersonifyAPI -->
+  <h3 id="homePersonifyAPI">homePersonify</h3>
+
+  <pre><code>P.homePersonify( [params], callback )</code></pre>
+
+
+  <p>'input' is required. Object type is a string representing a Twitter username. Optionally you can include an '@' before the username.</p>
+  
+  <br><br>
+
+  <!-- homePersonifyAPI -->
+  <h3 id="homePersonifyAPI">homePersonify</h3>
+
+  <pre><code>P.homePersonify( [params], callback )</code></pre>
+
+
+  <p>params key-value pairs are optional, but at least empty object literal brackets are required.</p>
+  
+  <br><br>
+
+  <!-- searchPersonifyAPI -->
+  <h3 id="searchPersonifyAPI">searchPersonify</h3>
+
+  <pre><code>P.searchPersonify( { q: 'input', [additional params] }, callback )</code></pre>
+
+
+  <p>The 'q' key and its associated value, which is a string, are required. The string can be any word you may use to search in Twitter's search bar. Any additional key-value pairs are optional.</p>
+  
+  <br><br>
+
+  <!-- searchTranslateAPI -->
+  <h3 id="searchTranslateAPI">searchTranslate</h3>
+
+  <pre><code>P.searchTranslate( { q: 'input', fromLanguage: 'en', toLanguage: 'fr', outputType: 'json' }, callback )</code></pre>
+
+
+  <p>All key-value pairs inside of the object passed as the first argument are required.</p>
+  
+  <br><br>
+
+  <!-- callback -->
+  <h3 id="callback">callback</h3>
+
+  <pre><code>function (data, err)</code></pre>
+
+
+  <p>data is the parsed data received from IBM Watson. Callback functions are required for all methods.</p>
+  
+  <br><br>
+  
+  <!-- OAuth credentials -->
+
+  <h2 id="Credentials">OAuth Credentials</h2>
+
+  <p>Go here to create a Twitter app and get OAuth credentials (if you haven't already):</p>
+  <a href="https://dev.twitter.com/apps/new">https://dev.twitter.com/apps/new</a>
+
+  <p>In order to use IBM Watson, you need to:</p>
+  <ul>
+    <li>Register for an IBM Bluemix account: <a href="http://www-01.ibm.com/software/bluemix/"></a>http://www-01.ibm.com/software/bluemix/</li>
+    <li>Create an App</li>
+    <li>Add User Modeling and/ or Machine Translation service(s)</li>
+    <li>From there, IBM will provide your credentials</li>
+  </ul>
+
+
+  <!-- tests -->
+  
+  <h2 id="Tests">Tests</h2>
+  <p>To make the tests pass you will need to fill out the file: config.js inside the tests folder.</p>
+  <p>To run the tests:</p>
+  <pre><code>npm test</code></pre>
+
+
+  <!-- Contributing -->
+  
+  <h2 id="Contributing">Contributing</h2>
+  <p>To contribute to this project, please take a look at the guidelines on <a href="https://github.com/PersonifyJS/personify.js/blob/master/CONTRIBUTING.md">GitHub</a></p>
+  
+
+  <!-- Development Team -->
+  
+  <h2 id="DevelopmentTeam">Development Team</h2>
+    <ul>
+      <li><a href="http://essam.io">Essam Al Joubori</a></li>
+      <li><a href="https://github.com/rohanagrawal">Rohan Agrawal</a></li>
+      <li><a href="https://github.com/philelauria">Phil Elauria</a></li>
+    </ul>
+
+  </section> 
+  </div>
+  <!--
+  <p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+  <pre><code>$ cd your_repo_root/repo_name
+  $ git fetch origin
+  $ git checkout gh-pages
+  </code></pre>
+  <p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+  <h3>
+  <a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+  <p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+  <h3>
+  <a id="rather-drive-stick" class="anchor" href="#rather-drive-stick" aria-hidden="true"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+  <p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+  <h3>
+  <a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+  <p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+  <h3>
+  <a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+  <p>Having trouble with Pages? Check out the documentation at <a href="https://help.github.com/pages">https://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+        </section> -->
+      <footer>
+        <!-- <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p> -->
       </footer>
     </div>
-
-    
+ <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-58451637-1', 'auto');
+  ga('send', 'pageview');
+</script>
 
   </body>
 </html>
