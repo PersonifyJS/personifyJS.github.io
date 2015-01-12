@@ -74,9 +74,13 @@
 
   <p>This project is <a href="https://github.com/PersonifyJS/personify.js">hosted on GitHub</a>. You can report bugs and discuss features on the <a href="https://github.com/PersonifyJS/personify.js/issues">GitHub issues page</a>. Personify.js is available for use under the <a href="https://github.com/PersonifyJS/personify.js/blob/master/LICENSE.md">MIT software license</a>.</p>
 
+  <br><br>
+
   <h2 id="Installing">Installing</h2>
 
   <pre><code>npm install personify --save</code></pre>
+
+  <br><br>
 
   <h2 id="Usage">Usage</h2>
 
@@ -86,6 +90,8 @@
 
   <pre><code>var Personify = require('personify');</code></pre>
 
+  <br><br>
+
   <!-- Configuration -->
 
   <h3 id="Configuration">Configuration</h3>
@@ -93,29 +99,30 @@
   <p>For every service you use through Watson, IBM will provide you with a separate set of OAuth credentials. See <a href="#Credentials">below</a> to find out where to get these credentials.</p>
 
   <pre><code>var config = {<br>
-// example credentials for Watson Machine Translation service
-    translateConfig : {
-        service_url:          '...',
-        service_username:     '...',
-        service_password:     '...'
-    },<br>
+  // example credentials for Watson Machine Translation service
+      translateConfig : {
+          service_url:          '...',
+          service_username:     '...',
+          service_password:     '...'
+      },<br>
 
-// example credentials for Watson User Modeling service<br>
-    personalityConfig : {
-        service_url:          '...',
-        service_username:     '...',
-        service_password:     '...'
-    },<br>
+  // example credentials for Watson User Modeling service<br>
+      personalityConfig : {
+          service_url:          '...',
+          service_username:     '...',
+          service_password:     '...'
+      },<br>
 
-// example credentials for Twitter API<br>
-    twitterConfig : {
-        consumer_key:         '...',
-        consumer_secret:      '...',
-        access_token:         '...',
-        access_token_secret:  '...'
-    }
-};</code></pre>
-
+  // example credentials for Twitter API<br>
+      twitterConfig : {
+          consumer_key:         '...',
+          consumer_secret:      '...',
+          access_token:         '...',
+          access_token_secret:  '...'
+      }
+  };</code></pre>
+  
+  <br><br>
   <!-- Instantiation -->
 
   <h3 id="Instantiation">Instantiation</h3>
@@ -125,6 +132,7 @@
   <pre><code>var P = new Personify(config);</code></pre>
 
   <!-- Methods -->
+  <br><br>
 
   <h2 id="Methods">Methods</h2>
 
@@ -139,9 +147,11 @@
                 count: 100
               };<br>
 
-P.userPersonify( params1 , function (data, err) {
-    console.log(data, err);
-});</code></pre>
+  P.userPersonify( params1 , function (data, err) {
+      console.log(data, err);
+  });</code></pre>
+
+  <br><br>
 
 <!-- homePersonify -->
 
@@ -154,10 +164,11 @@ P.userPersonify( params1 , function (data, err) {
                 exclude_tweets: true
               };<br>
 
-P.homePersonify( params2, function (data, err) {
-    console.log(data, err);
-});</code></pre>
+  P.homePersonify( params2, function (data, err) {
+      console.log(data, err);
+  });</code></pre>
 
+  <br><br>
 
 <!-- searchPersonify -->
 
@@ -170,12 +181,12 @@ P.homePersonify( params2, function (data, err) {
                 geoCode: 'San Francisco'
               };<br>
 
-P.searchPersonify( params3 , function (data, err) {
-  console.log(data, err);
-});</code></pre>
+  P.searchPersonify( params3 , function (data, err) {
+    console.log(data, err);
+  });</code></pre>
 
 
-
+  <br><br>
 <!-- searchTranslate -->
 
   <h3 id="searchTranslate">searchTranslate</h3>
@@ -189,11 +200,11 @@ P.searchPersonify( params3 , function (data, err) {
                 outputType: 'text'  // Choose from text, json or XML
               };<br>
 
-P.searchTranslate( params4 , function (data, err) {
-    console.log(data, err);
-});</code></pre>
+  P.searchTranslate( params4 , function (data, err) {
+      console.log(data, err);
+  });</code></pre>
 
-
+  <br><br>
 
 <!-- userTranslate -->
 
@@ -208,12 +219,12 @@ P.searchTranslate( params4 , function (data, err) {
                 outputType: 'json'
               };<br>
 
-P.userTranslate( params5, function(data, err){
-    console.log(data, err);
-});</code></pre>
+  P.userTranslate( params5, function(data, err){
+      console.log(data, err);
+  });</code></pre>
 
 
-
+  <br><br>
 
 <!-- homeTranslate -->
 
@@ -228,11 +239,11 @@ P.userTranslate( params5, function(data, err){
                 outputType: 'json'
               };<br>
 
-P.homeTranslate( params6, function(data, err){
-    console.log(data, err);
-});</code></pre>
+  P.homeTranslate( params6, function(data, err){
+      console.log(data, err);
+  });</code></pre>
 
-
+  <br><br>
 <!-- streamTranslate -->
 
   <h3 id="streamTranslate">streamTranslate</h3>
@@ -246,11 +257,12 @@ P.homeTranslate( params6, function(data, err){
                 outputType: 'text'
               };<br>
 
-P.streamTranslate( params7, function(data, err){
-    console.log(data, err);
-});</code></pre>
+  P.streamTranslate( params7, function(data, err){
+      console.log(data, err);
+  });</code></pre>
 
 <!-- Personify API -->
+  <br><br>
 
   <h2 id="PersonifyAPI">Personify API</h2>
 
@@ -324,7 +336,7 @@ P.streamTranslate( params7, function(data, err){
 
   <p>In order to use IBM Watson, you need to:
     <ul>
-      <li>Register for an IBM Bluemix account: <a href="http://www-01.ibm.com/software/bluemix/"></a>http://www-01.ibm.com/software/bluemix/</li>
+      <li>Register for an <a href="http://www-01.ibm.com/software/bluemix/">IBM Bluemix account</a> </li>
       <li>Create an App</li>
       <li>Add User Modeling and/ or Machine Translation service(s)</li>
       <li>From there, IBM will provide your credentials</li>
