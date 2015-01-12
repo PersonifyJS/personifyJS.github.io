@@ -6,9 +6,9 @@ body {
   font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#202020;
   font-weight:400;
-  background: url(https://s3.amazonaws.com/financejs/crossword.png);
-  background-repeat: repeat;
-
+  /*background: url(https://s3.amazonaws.com/financejs/crossword.png);*/
+  /*background-repeat: repeat;*/
+  background: #E4F1FE;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -53,15 +53,19 @@ a small {
   display:block;
 }
 
+.title, .view{
+  color:#ecf0f1 !important;
+}
+
 .link-header {
-  color:#222 !important;
+  color:#ecf0f1 !important;
   font-size:13px;
   text-decoration: none !important;
   line-height: 30px;
 }
 
 .link-child {
-  color:#222 !important;
+  color:#ecf0f1 !important;
   font-size:12px;
   margin-left: 20px;
   line-height: 20px;
@@ -132,7 +136,7 @@ header {
   padding-top: 50px;
   padding-left: 50px;
   padding-right: 25px;
-  background: #fff;
+  background: #1E8BC3;
   position: fixed;
   z-index: 10;
   top: 0;
@@ -215,6 +219,7 @@ strong {
   color:#222;
   font-weight:700;
 }
+
 
 header ul li + li {
   width:88px;
