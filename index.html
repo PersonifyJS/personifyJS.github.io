@@ -58,7 +58,7 @@
   <h1>
     <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Personify.js</h1>
 
-  <p>A JavaScript based library that allows easy access to IBM Watson features utilizing Twitter data. IBM Watson has some of the most advanced linguistic analytics tools available today. Twitter is one of the world's most popular text-based communication platforms. Leverage the power of both with minimal effort through personify.js.</p>
+  <p>A JavaScript based library that allows easy access to <a href="http://www.ibm.com/smarterplanet/us/en/ibmwatson/">IBM Watson</a> features utilizing Twitter data. IBM Watson has some of the most advanced linguistic analytics tools available today. Twitter is one of the world's most popular text-based communication platforms. Leverage the power of both with minimal effort through personify.js.</p>
 
   <p>The current version implements:
 
@@ -263,14 +263,23 @@
 
   <h2 id="PersonifyAPI">Personify API</h2>
 
+  <br>
 
+  <pre><code>var P = new Personify( config )</code></pre>
+
+  <p>Instantiate a new Personify object and pass in a config.</p>
+  <p>config - Type: <code>Object</code></p>
+  <p>At least one set of OAuth credentials from both Twitter and IBM Bluemix are required to use the services personify.js leverages for you.</p>
   <!-- userPersonifyAPI -->
 
   <h3 id="userPersonifyAPI">userPersonify</h3>
 
-  <pre><code>P.userPersonify( 'input', callback )</code></pre>
+  <pre><code>P.userPersonify( userName, callback )</code></pre>
 
-  <p>'input' is required. Object type is a string representing a Twitter username. Optionally you can include an '@' before the username.</p>
+  <p>userName - Type: <code>String</code></p>
+
+  <p>userName is required. Represents a Twitter handle. Optionally you can include an '@' before the username.</p>
+  <p>See <a href="https://dev.twitter.com/rest/reference/get/statuses/user_timeline">here</a> for more information on optional parameters.</p>
 
   <br><br>
 
@@ -279,8 +288,11 @@
 
   <pre><code>P.homePersonify( [params], callback )</code></pre>
 
+  <p>[params] - Type: <code>Object</code></p>
 
-  <p>'input' is required. Object type is a string representing a Twitter username. Optionally you can include an '@' before the username.</p>
+  <p>Key-value pairs inside of [params] are optional, but at least an empty object literal is required.</p>
+
+  <p>See <a href="https://dev.twitter.com/rest/reference/get/statuses/home_timeline">here</a> for more information on optional parameters.</p>
   
   <br><br>
 
@@ -352,7 +364,7 @@
   <!-- Contributing -->
   
   <h2 id="Contributing">Contributing</h2>
-  <p>To contribute to this project, please take a look at the guidelines on <a href="https://github.com/PersonifyJS/personify.js/blob/master/CONTRIBUTING.md">GitHub</a></p>
+  <p>To contribute to this project, please take a look at the guidelines on <a href="https://github.com/PersonifyJS/personify.js/blob/master/CONTRIBUTING.md">GitHub</a>.</p>
   
    <br><br>
   <!-- Development Team -->

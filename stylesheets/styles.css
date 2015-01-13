@@ -7,7 +7,7 @@ body {
   font-weight:300;
   background: url(https://s3.amazonaws.com/financejs/crossword.png);
   background-repeat: repeat;
-
+  font-size: 1em;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -232,8 +232,8 @@ header ul a strong {
 }
 
 section {
+  margin-left: 50px; 
   width:500px;
-  float:right;
   padding-bottom:50px;
 }
 
