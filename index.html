@@ -294,7 +294,7 @@
 
   <p>See <a href="https://dev.twitter.com/rest/reference/get/statuses/home_timeline">here</a> for more information on optional parameters.</p>
   
-  <br><br>
+  <br>
 
   <!-- homePersonifyAPI -->
   <h3 id="homePersonifyAPI">homePersonify</h3>
@@ -304,36 +304,141 @@
 
   <p>params key-value pairs are optional, but at least empty object literal brackets are required.</p>
   
-  <br><br>
+  <br>
 
   <!-- searchPersonifyAPI -->
   <h3 id="searchPersonifyAPI">searchPersonify</h3>
 
-  <pre><code>P.searchPersonify( { q: 'input', [additional params] }, callback )</code></pre>
+  <pre><code>P.searchPersonify( { q: 'input', [params] }, callback )</code></pre>
+
+  <p>input Type: <code>String</code></p>
 
 
-  <p>The 'q' key and its associated value, which is a string, are required. The string can be any word you may use to search in Twitter's search bar. Any additional key-value pairs are optional.</p>
+  <p>The 'q' key and its associated value, which is a string, are required. input can be any word you may use to search in Twitter's internal search engine. Any additional search parameters are optional.</p>
+
+  <p>See <a href="https://dev.twitter.com/rest/reference/get/search/tweets">here</a> for more information on optional parameters.</p>
   
-  <br><br>
+  <br>
 
   <!-- searchTranslateAPI -->
   <h3 id="searchTranslateAPI">searchTranslate</h3>
 
-  <pre><code>P.searchTranslate( { q: 'input', fromLanguage: 'en', toLanguage: 'fr', outputType: 'json' }, callback )</code></pre>
-
-
-  <p>All key-value pairs inside of the object passed as the first argument are required.</p>
+  <pre><code>P.searchTranslate( params , callback )</code></pre>
   
-  <br><br>
+  <pre><code>var params = { 
+                           q: input,
+                           fromLanguage: 'en',
+                           toLanguage: 'fr',
+                           outputType: 'json'
+                          } 
+                            </code></pre>
+
+  <p>params - Type: <code>Object</code> input - Type: <code>String</code> or <code>Number</code> or <code>Array</code></p>   
+  
+  <p>Language key:
+    <ul>
+      <li>'ar' = Arabic</li>
+      <li>'en' = English</li>
+      <li>'es' = Spanish</li>
+      <li>'fr' = French</li>
+      <li>'pt' = Brazilian Portuguese</li>
+    </ul>
+  </p>  
+
+   <p>Output Types:
+    <ul>
+      <li>'text'</li>
+      <li>'JSON'</li>
+      <li>'XML'</li>
+    </ul>
+  </p>                   
+
+  <p>All keys shown in params are required. See <a href="https://dev.twitter.com/rest/reference/get/search/tweets">here</a> for more information on optional parameters.</p>
+  
+  <br>
+
+  <!-- userTranslateAPI -->
+  <h3 id="userTranslateAPI">userTranslate</h3>
+
+  <pre><code>P.userTranslate( params , callback )</code></pre>
+
+  <pre><code>var params = { 
+                           screen_name: input,
+                           fromLanguage: 'en',
+                           toLanguage: 'fr',
+                           outputType: 'json'
+                          } 
+                            </code></pre>
+
+  <p>params - Type: <code>Object</code></p>
+  <p>Please see Language key and Output Types under searchTranslate method in API.</p>
+  <p>See <a href="https://dev.twitter.com/rest/reference/get/statuses/user_timeline">here</a> for more information on optional parameters.</p>
+  
+  <br>
+
+  <!-- homeTranslateAPI -->
+  <h3 id="homeTranslateAPI">homeTranslate</h3>
+
+  <pre><code>P.homeTranslate( params , callback )</code></pre>
+
+  <pre><code>var params = { 
+                           fromLanguage: 'en',
+                           toLanguage: 'fr',
+                           outputType: 'json'
+                          } 
+                            </code></pre>
+
+  <p>count : val</p>
+  <p>val - Type: <code>Number</code> val defaults to 20 and has a max of 200.</p>
+
+  <p>All keys in params are required. Optionally you can specify a count key. This limits the number of Tweets for the search.</p>
+  <p>See <a href="https://dev.twitter.com/rest/reference/get/statuses/home_timeline">here</a> for more information on optional parameters.</p>
+
+  <br>
+
+  <!-- streamTranslateAPI -->
+  <h3 id="streamTranslateAPI">streamTranslate</h3>
+
+  <pre><code>P.streamTranslate( params , callback )</code></pre>
+
+  <pre><code>var params = { 
+                           track: input,
+                           fromLanguage: 'en',
+                           toLanguage: 'fr',
+                           outputType: 'json'
+                          } 
+                          </code></pre>
+
+  <p>All keys in params are required for streaming. Please see Language key and Output Type options under searchTranslate method in API.</p>
+  
+  <p>Additionally, optional search parameters that can be added to params:</p>
+  <ul>
+    <li>locations : boundingBox</li>
+    <li>stop : time</li>
+  </ul>
+
+  <p>boundingBox - Type: <code>Array</code> boundingBox coordinates can be found <a href="https://www.flickr.com/places/info/1">here</a>.</p>
+
+  <p>boundingBox example: var sanFrancisco = [ '-122.75', '36.8', '-121.75', '37.8' ];</p>
+
+  <p>time - Type: <code>Number</code> time is the number of miliseconds after the stream starts that you want the stream to stop.</p>
+
+  <p>See <a href="https://dev.twitter.com/streaming/reference/post/statuses/filter">here</a> for more information on optional parameters.</p>
+
+  <br>
 
   <!-- callback -->
   <h3 id="callback">callback</h3>
 
+  <p>Type: <code>Function</code></p>
+
   <pre><code>function (data, err)</code></pre>
 
-
-  <p>data is the parsed data received from IBM Watson. Callback functions are required for all methods.</p>
-  
+  <ul>
+    <li>callback takes two parameters, data and error, in that order.</li>
+    <li>callback is required for all methods.</li>
+  </ul>
+ 
   <br><br>
   
   <!-- OAuth credentials -->
