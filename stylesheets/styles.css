@@ -336,6 +336,14 @@ footer {
   header ul {
     display:none;
   }
+
+  h1 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 44px;
+    font-weight: 700;
+    margin-top: -10px;
+    color: #2c3e50;
+  }
 }
 
 @media print {
