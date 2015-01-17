@@ -279,9 +279,15 @@
 
   <pre><code>P.userPersonify( userName, callback )</code></pre>
 
-  <p>userName - Type: <code>String</code></p>
 
-  <p>userName is required. Represents a Twitter handle. Optionally you can include an '@' before the username.</p>
+  <p>var params = {
+    screen_name: 'userName'
+  }</p>
+
+  <p>params - Type: <code>Object</code></p>
+  <p>userName -Type: <code>String</code></p>
+
+  <p>params with screen_name is required. userName represents a Twitter handle. Optionally you can include an '@' before userName.</p>
   <p>See <a href="https://dev.twitter.com/rest/reference/get/statuses/user_timeline">here</a> for more information on optional parameters.</p>
 
   <br>
