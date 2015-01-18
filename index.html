@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Personify.js&mdash;JavaScript library that harnesses the power of IBM Watson and the Twitter APIs</title>
-
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -18,7 +17,6 @@
       <header>
         <h3 class='title'>Personify.js (1.0.3)</h3>
         <p class='title'>A JavaScript library that harnesses the power of IBM Watson and the Twitter APIs.</p>
-
         <p class="view"><a href="https://github.com/PersonifyJS/personify.js">View Source Code <small>PersonifyJS/personify.js</small></a></p>
 
         <ul>
@@ -74,7 +72,7 @@
   </p>
 
   <p>This project is <a href="https://github.com/PersonifyJS/personify.js">hosted on GitHub</a>. You can report bugs and discuss features on the <a href="https://github.com/PersonifyJS/personify.js/issues">GitHub issues page</a>. Personify.js is available for use under the <a href="https://github.com/PersonifyJS/personify.js/blob/master/LICENSE.md">MIT software license</a>.</p>
-
+ 
   <br><br>
 
   <h2 id="Installing">Installing</h2>
@@ -278,11 +276,17 @@
 
   <h3 id="userPersonifyAPI">userPersonify</h3>
 
-  <pre><code>P.userPersonify( userName, callback )</code></pre>
+  <pre><code>P.userPersonify( params, callback )</code></pre>
 
-  <p>userName - Type: <code>String</code></p>
 
-  <p>userName is required. Represents a Twitter handle. Optionally you can include an '@' before the username.</p>
+  <p>var params = {
+    screen_name: 'userName'
+  }</p>
+
+  <p>params - Type: <code>Object</code></p>
+  <p>userName -Type: <code>String</code></p>
+
+  <p>params with screen_name is required. userName represents a Twitter handle. Optionally you can include an '@' before userName.</p>
   <p>See <a href="https://dev.twitter.com/rest/reference/get/statuses/user_timeline">here</a> for more information on optional parameters.</p>
 
   <br>
